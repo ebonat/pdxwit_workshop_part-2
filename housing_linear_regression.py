@@ -1,7 +1,8 @@
 
-import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
+import matplotlib.pyplot as plt
+
 from sklearn import linear_model    
 from sklearn.model_selection import train_test_split
 
@@ -20,11 +21,11 @@ def main():
     y=y.values.reshape(len(y),1)
 
 #     split the data in train (80%) and test (20%)
-    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2)
+    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=1)
      
 #     plot the test data
     plt.scatter(X_test, y_test,  color='black')
-    plt.title('Test Housing Data')
+    plt.title('Test Housing Price Data')
     plt.xlabel('Size')
     plt.ylabel('Price')
     plt.xticks(())
@@ -32,7 +33,7 @@ def main():
 #     plt.show()
     
 #     create linear regression object model
-    regression_model = linear_model.LinearRegression()
+    regression_model = linear_model.LinearRegression(fit_intercept=True, normalize=False, copy_X=False, n_jobs=1)
     
 #     train the model using the training sets
     regression_model.fit(X_train, y_train)
